@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hm.DAO.IF_BrdDAO">
+	<insert id="insert">
+		insert into brd
+		values (brd_seq.nextval, #{title}, #{name}, #{memo}, 0, default)
+	</insert>
+	<select id="brdlist" resultType="com.hm.VO.BrdVO">
+		select * from brd order by no
+	</select>
+	<update id="updateviews">
+		update brd set views=views+1 where no = #{vno}
+	</update>
+	<select id="selectone" resultType="com.hm.VO.BrdVO">
+		select * from brd where no = #{vno}
+	</select>
+	<update id="updateone">
+		update brd set title=#{title}, memo=#{memo} where no = #{no}
+	</update>
+	<delete id="delete">
+		delete from brd where no = #{vno}
+	</delete>
+</mapper>
+
