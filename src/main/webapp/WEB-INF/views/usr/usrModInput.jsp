@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,22 +23,25 @@
 		</ul>
 	</nav>
 	<section id="content">
-	<table id="mtable">
-		<tr>
-			<th>No.</th>
-			<th>Title</th>
-			<th>Writer</th>
-		</tr>
-		<tr>
-			<c:forEach items="${brdList}" var="vo" varStatus="status">
-				<tr>
-					<th>${status.count}</th>
-					<th><a class="mlink" href=brdDetail?vno=${vo.no}>${vo.title}</a></th>
-					<th>${vo.name}</th>
-				</tr>
-			</c:forEach>
-		</tr>
-	</table>
+	<form action="usrModSave" method="post">
+		<table id="itable">
+			<tr>
+				<th>ID :</th>
+				<th><input type="hidden" name="id" value=${oneData.id} />${oneData.id}</th>
+			</tr>
+			<tr>
+				<th>New pw :</th>
+				<th><input type="text" name="pw" placeholder=${oneData.pw} /></th>
+			</tr>
+			<tr>
+				<th>New NAME :</th>
+				<th><input type="text" name="name" placeholder=${oneData.name} /></th>
+			</tr>
+			<tr>
+				<th colspan="2"><input onclick="alert('수정되었습니다')" type="submit" value="Save" id="btn" /></th>
+			</tr>
+		</table>
+	</form>
 	</section>
 </body>
 </html>

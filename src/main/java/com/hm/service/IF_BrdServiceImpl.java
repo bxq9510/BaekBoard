@@ -35,7 +35,7 @@ public class IF_BrdServiceImpl implements IF_BrdService {
 		return brddao.selectOne(vno);
 	}
 	@Override
-	public void delete(int vno) throws Exception {
+	public void delete(int vno) throws Exception { 
 		brddao.delete(vno);
 	}
 }

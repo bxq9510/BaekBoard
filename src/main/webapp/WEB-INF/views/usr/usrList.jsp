@@ -31,6 +31,7 @@
 			<th>PW</th>
 			<th>NAME</th>
 			<th>DAY</th>
+			<th>Edit / Del</th>
 		</tr>
 		<tr>
 			<c:forEach items="${usrList}" var="usr" varStatus="status">
@@ -40,10 +41,22 @@
 					<th>${usr.pw}</th>
 					<th>${usr.name}</th>
 					<th>${usr.day}</th>
+					<th><a href=usrMod?uid=${usr.id}>Edit</a> / <a href="javascript:checkFlag('${usr.id}')" >Del</a></th>
 				</tr>
 			</c:forEach>
 		</tr>
 	</table>
 	</section>
 </body>
+<script>
+	function checkFlag(delid){
+		if (confirm("삭제하시겠습니까?")==true) {
+			alert("삭제되었습니다.");
+			// 컨트롤러 이동
+			location.herf='usrDelete?uid='+delid;
+		}else {
+			return; // 호출에 값을 넘기는 것이나, 함수를 종료하는 의미
+		}
+	}
+</script>
 </html>

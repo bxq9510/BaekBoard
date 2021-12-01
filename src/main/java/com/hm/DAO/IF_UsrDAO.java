@@ -11,4 +11,7 @@ public interface IF_UsrDAO {
 	//insert dusr values (?,?,?,?)
 	public void insertUsr(UsrVO usrvo) throws Exception;
 	public List<UsrVO> usrList() throws Exception;
+	public void usrDel(String uid) throws Exception;
+	public void update(UsrVO usrvo) throws Exception;
+	public UsrVO usrSelectOne(String uid) throws Exception;
 }

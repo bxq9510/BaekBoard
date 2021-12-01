@@ -18,8 +18,8 @@ public class IF_ComDAOImpl implements IF_ComDAO {
 		sqlSession.insert(mapperquery+".insert", comvo);
 	}
 	@Override
-	public List<ComVO> comList() throws Exception {
-		return sqlSession.selectList(mapperquery+".comlist");
+	public List<ComVO> comList(int vno) throws Exception {
+		return sqlSession.selectList(mapperquery+".comlist", vno);
 	}
 
 }

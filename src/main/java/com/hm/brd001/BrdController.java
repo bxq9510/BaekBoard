@@ -3,7 +3,6 @@ package com.hm.brd001;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hm.VO.BrdVO;
+import com.hm.VO.ComVO;
 import com.hm.service.IF_BrdService;
+import com.hm.service.IF_ComService;
 
 @Controller
 public class BrdController {
 	@Inject
 	private IF_BrdService brdService;
+	@Inject
+	private IF_ComService comService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String brdForm(Locale locale, Model model) throws Exception{
 		return "/brdForm";		
@@ -47,7 +50,13 @@ public class BrdController {
 	@RequestMapping(value = "/brdDetail", method = RequestMethod.GET)
 	public String brdDetail(Locale locale, Model model, @RequestParam("vno") int vno) throws Exception {
 		model.addAttribute("oneData", brdService.brdDetail(vno));
+		model.addAttribute("comList", comService.comList(vno));
 		return "bbs/brdDetail";
+	}
+	@RequestMapping(value = "/comSave", method = RequestMethod.POST)
+	public String comSave(@RequestParam("vno") int vno, ComVO comvo, Locale locale, Model model) throws Exception {
+		comService.insert(comvo);
+		return "redirect:/brdDetail?vno="+vno;
 	}
 	// delete from brd where no = #{vno}
 	@RequestMapping(value = "/brdDelete", method = RequestMethod.GET)
@@ -63,7 +72,6 @@ public class BrdController {
 	// update brd set title=#{title}, memo=#{memo} where no = #{no}
 	@RequestMapping(value = "/brdModSave", method = RequestMethod.POST)
 	public String brdMod(BrdVO brdvo, Locale locale, Model model) throws Exception {
-		System.out.println(brdvo.getMemo());
 		brdService.update(brdvo);
 		return "redirect:/brdList";
 	}

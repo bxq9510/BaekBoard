@@ -6,10 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.hm.DAO.IF_ComDAO">
 	<insert id="insert">
 		insert into bcom
-		values (#{name}, #{com})
+		values (#{name}, #{com}, #{no})
 	</insert>
 	<select id="comlist" resultType="com.hm.VO.ComVO">
-		select * from bcom
+		select * from bcom where no=#{vno}
 	</select>
 </mapper>
 

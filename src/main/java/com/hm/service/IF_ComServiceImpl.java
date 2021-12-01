@@ -18,7 +18,7 @@ public class IF_ComServiceImpl implements IF_ComService {
 		comdao.insertCom(comvo);
 	}
 	@Override
-	public List<ComVO> comList() throws Exception {
-		return comdao.comList();
+	public List<ComVO> comList(int vno) throws Exception {
+		return comdao.comList(vno);
 	}
 }

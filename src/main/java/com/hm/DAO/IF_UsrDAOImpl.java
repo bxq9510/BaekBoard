@@ -27,4 +27,19 @@ public class IF_UsrDAOImpl implements IF_UsrDAO {
 		return sqlSession.selectList(mapperquery+".usrlist");
 	}
 
+	@Override
+	public void usrDel(String uid) throws Exception {
+		sqlSession.delete(mapperquery+".delete", uid);
+	}
+
+	@Override
+	public void update(UsrVO usrvo) throws Exception {
+		sqlSession.update(mapperquery+".update", usrvo);
+	}
+
+	@Override
+	public UsrVO usrSelectOne(String uid) throws Exception {
+		return sqlSession.selectOne(mapperquery+".selectone", uid);
+	}
+
 }

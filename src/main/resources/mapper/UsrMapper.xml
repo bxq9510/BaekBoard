@@ -11,5 +11,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="usrlist" resultType="com.hm.VO.UsrVO">
 		select * from busr
 	</select>
+	<delete id="delete">
+		delete from busr where id=#{uid}
+	</delete>
+	<update id="update">
+		update busr set pw=#{pw}, name=#{name} where id = #{id}
+	</update>
+	<select id="selectone" resultType="com.hm.VO.UsrVO">
+		select * from busr where id=#{uid}
+	</select>
 </mapper>
 

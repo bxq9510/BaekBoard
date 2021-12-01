@@ -21,6 +21,12 @@ table#dtable {
 	margin: 0 auto;
     border-collapse: collapse;
 }
+table#ctable {
+	width: 800px;
+	border: 1px solid #444444;
+	margin: 0 auto;
+    border-collapse: collapse;
+}
 table#itable {
 	width: 800px;
 	margin: 0 auto;

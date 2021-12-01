@@ -21,7 +21,21 @@ public class IF_UsrServiceImpl implements IF_UsrService {
 
 	@Override
 	public List<UsrVO> usrList() throws Exception {
-
 		return usrdao.usrList();
+	}
+
+	@Override
+	public void usrDel(String uid) throws Exception {
+		usrdao.usrDel(uid);
+	}
+
+	@Override
+	public void update(UsrVO usrvo) throws Exception {
+		usrdao.update(usrvo);
+	}
+
+	@Override
+	public UsrVO usrModForm(String uid) throws Exception {
+		return usrdao.usrSelectOne(uid);
 	}
 }

@@ -9,5 +9,5 @@ import com.hm.VO.ComVO;
 @Repository
 public interface IF_ComDAO {
 	public void insertCom(ComVO comvo) throws Exception;
-	public List<ComVO> comList() throws Exception;
+	public List<ComVO> comList(int vno) throws Exception;
 }

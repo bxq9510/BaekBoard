@@ -6,5 +6,5 @@ import com.hm.VO.ComVO;
 
 public interface IF_ComService {
 	public void insert(ComVO comvo) throws Exception;
-	public List<ComVO> comList() throws Exception;
+	public List<ComVO> comList(int vno) throws Exception;
 }
