@@ -21,6 +21,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 인터셉터 설정 -->
+	<beans:bean id="AuthLoginInterceptor" class="com.hm.Interceptor.AuthLoginInterceptor">
+	</beans:bean>
+	<!-- 인터셉터에 적용할 컨트롤러 설정 -->
+	<interceptors>
+		<interceptor>
+		<mapping path="/**" /> 	<!-- /시작하는 모든 것 ** /name/name 하위까지 모두다 -->
+		<exclude-mapping path="/log**"></exclude-mapping>
+		<beans:ref bean="AuthLoginInterceptor" />
+		</interceptor>
+	</interceptors>
+	
 	<context:component-scan base-package="com.hm.brd001" />
 	
 	

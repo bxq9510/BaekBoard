@@ -9,14 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (brd_seq.nextval, #{title}, #{name}, #{memo}, 0, default)
 	</insert>
 	<select id="brdlist" resultType="com.hm.VO.BrdVO">
-		select * from brd order by no
+		select * from
+		(select rownum as num, b.* from
+		(select * from brd order by mdate desc) b)
+		where num between #{startNo}+1 and #{startNo} + #{perPageNum}
+	</select>
+	<select id="selectone" resultType="com.hm.VO.BrdVO">
+		select * from brd where no = #{vno}
+	</select>
+	<select id="brdcnt" resultType="int">
+		select count (*) from brd
 	</select>
 	<update id="updateviews">
 		update brd set views=views+1 where no = #{vno}
 	</update>
-	<select id="selectone" resultType="com.hm.VO.BrdVO">
-		select * from brd where no = #{vno}
-	</select>
 	<update id="updateone">
 		update brd set title=#{title}, memo=#{memo} where no = #{no}
 	</update>

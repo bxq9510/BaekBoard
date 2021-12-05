@@ -17,5 +17,9 @@ import com.hm.service.IF_ComService;
 public class ComController {
 	@Inject
 	private IF_ComService comService;
-
+	@RequestMapping(value = "/comSave", method = RequestMethod.POST)
+	public String comSave(@RequestParam("vno") int vno, ComVO comvo, Locale locale, Model model) throws Exception {
+		comService.insert(comvo);
+		return "redirect:/brdDetail?vno="+vno;
+	}
 }

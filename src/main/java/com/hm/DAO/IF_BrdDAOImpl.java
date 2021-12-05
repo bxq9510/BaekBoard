@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.hm.VO.BrdVO;
+import com.hm.VO.PageVO;
 
 @Repository
 public class IF_BrdDAOImpl implements IF_BrdDAO {
@@ -20,8 +21,8 @@ public class IF_BrdDAOImpl implements IF_BrdDAO {
 		sqlSession.insert(mapperquery+".insert", brdvo);
 	}
 	@Override
-	public List<BrdVO> selectAll() throws Exception {
-		return sqlSession.selectList(mapperquery+".brdlist");
+	public List<BrdVO> selectAll(PageVO pagevo) throws Exception {
+		return sqlSession.selectList(mapperquery+".brdlist", pagevo);
 	}
 	@Override
 	public void updateViews(int vno) throws Exception {
@@ -38,6 +39,10 @@ public class IF_BrdDAOImpl implements IF_BrdDAO {
 	@Override
 	public void delete(int vno) throws Exception {
 		sqlSession.delete(mapperquery+".delete", vno);
+	}
+	@Override
+	public int brdcnt() throws Exception {
+		return sqlSession.selectOne(mapperquery+".brdcnt");
 	}
 
 }

@@ -21,6 +21,8 @@
 			<li><a class="mlink" href="brdInput">New MEMO</a></li><li> | </li>
 			<li><a class="mlink" href="brdList">All MEMO</a></li><li> | </li>
 			<li><a class="mlink" href="https://popcat.click/" target="_blank">POPCAT</a></li>
+			<li>${SessionScope.usrName} / ${SessionScope.usrId}</li>
+			<a href="logout">LogOut</a>
 		</ul>
 	</nav>
 	<section id="content">

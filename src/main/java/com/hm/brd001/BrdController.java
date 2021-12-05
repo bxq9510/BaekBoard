@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hm.VO.BrdVO;
-import com.hm.VO.ComVO;
+import com.hm.VO.PageVO;
 import com.hm.service.IF_BrdService;
 import com.hm.service.IF_ComService;
 
@@ -40,23 +40,32 @@ public class BrdController {
 		brdService.insert(brdvo);
 		return "redirect:/brdList";
 	}
+	
+	
+	
 	// select * from brd order by no | update brd set views=views+1 where no = #{vno}
 	@RequestMapping(value = "/brdList", method = RequestMethod.GET)
-	public String brdList(Locale locale, Model model) throws Exception {
-		model.addAttribute("brdList", brdService.brdList());
+	public String brdList(PageVO pagevo, Locale locale, Model model) throws Exception {
+		// 처음에 페이지 번호를 넘기지 않을 경우
+		if (pagevo.getPage() == null) {
+			pagevo.setPage(1); // 클라이언트가 보낸 파라미터가 자동 매핑되고 해당 변수값을 가져온 후 null로 인지 체크
+		} // page 정보
+		pagevo.setPerPageNum(10); // page당 출력할 게시물 수
+		pagevo.setTotalCount(55); //전체 게시글 수
+		System.out.println("전쳬페이지수 : "+brdService.brdcnt());
+		model.addAttribute("brdList", brdService.brdList(pagevo));
+		model.addAttribute("pageVO", pagevo);
 		return "bbs/brdList";		
 	}
+	
+	
+	
 	// select * from brd where no = #{vno}
 	@RequestMapping(value = "/brdDetail", method = RequestMethod.GET)
 	public String brdDetail(Locale locale, Model model, @RequestParam("vno") int vno) throws Exception {
 		model.addAttribute("oneData", brdService.brdDetail(vno));
 		model.addAttribute("comList", comService.comList(vno));
 		return "bbs/brdDetail";
-	}
-	@RequestMapping(value = "/comSave", method = RequestMethod.POST)
-	public String comSave(@RequestParam("vno") int vno, ComVO comvo, Locale locale, Model model) throws Exception {
-		comService.insert(comvo);
-		return "redirect:/brdDetail?vno="+vno;
 	}
 	// delete from brd where no = #{vno}
 	@RequestMapping(value = "/brdDelete", method = RequestMethod.GET)

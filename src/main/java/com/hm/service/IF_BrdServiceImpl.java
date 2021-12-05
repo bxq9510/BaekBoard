@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hm.DAO.IF_BrdDAO;
 import com.hm.VO.BrdVO;
+import com.hm.VO.PageVO;
 
 @Service
 public class IF_BrdServiceImpl implements IF_BrdService {
@@ -18,8 +19,8 @@ public class IF_BrdServiceImpl implements IF_BrdService {
 		brddao.insert(brdvo);
 	}
 	@Override
-	public List<BrdVO> brdList() throws Exception {
-		return brddao.selectAll();
+	public List<BrdVO> brdList(PageVO pagevo) throws Exception {
+		return brddao.selectAll(pagevo);
 	}
 	@Override
 	public BrdVO brdDetail(int vno) throws Exception {
@@ -37,5 +38,9 @@ public class IF_BrdServiceImpl implements IF_BrdService {
 	@Override
 	public void delete(int vno) throws Exception { 
 		brddao.delete(vno);
+	}
+	@Override
+	public int brdcnt() throws Exception {
+		return brddao.brdcnt();
 	}
 }
